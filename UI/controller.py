@@ -28,7 +28,7 @@ class Controller:
 
         corsiPD = self._model.getCorsiPD(pdInt)
 
-        if not len(corsiPD):
+        if not len(corsiPD): #se non è pieno
             self._view.txt_result.controls.append(
                 ft.Text(f"Nessun corso trovato per il {pd} periodo didattico."))
             self._view.update_page()
@@ -77,7 +77,7 @@ class Controller:
     def handlePrintIscrittiCodins(self, e):
         self._view.txt_result.controls.clear()
 
-        if self._ddCodinsValue is None:
+        if self._ddCodinsValue is None: #non ho bisogno di andare direttamente al view per prenderlo, già letto quando utente ha selezionato la voce
             self._view.create_alert("Per favore selezionare un insegnamento.")
             self._view.update_page()
             return
@@ -132,12 +132,12 @@ class Controller:
 
         for c in self._model.getAllCorsi():
             self._view.ddCodins.options.append(ft.dropdown.Option(
-                key = c.codins,
-                data = c,
+                key = c.codins, #quello che visualizziamo
+                data = c, #oggetto vero e proprio
                 on_click = self._choiceDDCodins
-            ))
+            )) #aggiungo opzione che è un oggetto e non una stringa
             pass
 
-    def _choiceDDCodins(self, e):
-        self._ddCodinsValue = e.control.data
+    def _choiceDDCodins(self, e): #leggere soluzione utente e salvarla in una variabile locale
+        self._ddCodinsValue = e.control.data #oggetto "corso" selezionato
         print(self._ddCodinsValue)

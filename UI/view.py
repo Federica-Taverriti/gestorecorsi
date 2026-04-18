@@ -14,7 +14,7 @@ class View(ft.UserControl):
         # graphical elements
         self._title = None
 
-        self.ddPD = None
+        self.ddPD = None #menu a tendina
         self.ddCodins = None
         self.btnPrintCorsiPD = None
         self.btnPrintIscrittiCorsiPD = None

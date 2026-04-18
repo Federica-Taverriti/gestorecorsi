@@ -60,7 +60,7 @@ class DAO():
 
         res = []
         for row in cursor:
-            res.append(Corso(**row))
+            res.append(Corso(**row)) #unpack del dizionario; ad ogni proprietà passare l'equivalente valore la cui chiave è la stesaa
 
         cursor.close()
         cnx.close()
@@ -85,7 +85,7 @@ class DAO():
                                 crediti = row["crediti"],
                                 nome = row["nome"],
                                 pd = row["pd"]),
-                         row["n"] ))
+                         row["n"] )) #append di una tupla di corso e un intero
 
         cursor.close()
         cnx.close()
@@ -105,7 +105,7 @@ class DAO():
 
         res = []
         for row in cursor:
-            res.append(Studente(**row))
+            res.append(Studente(**row)) #DTO Studente in model
 
         cursor.close()
         cnx.close()
@@ -123,6 +123,7 @@ class DAO():
                     and s.CDS != ""
                     group by s.CDS """
 
+        #contiamo n. studenti con campo CDS uguale
         cursor.execute(query, (codins,))
 
         res = []
